@@ -1,0 +1,1 @@
+﻿minio.exe server "C:\Minio\data" --console-address ":9001"
