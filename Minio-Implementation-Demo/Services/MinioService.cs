@@ -2,6 +2,7 @@
 
 public class MinioService
 {
+    #region ctor
     private readonly MinioClient _minioClient;
     private readonly string _bucketName;
 
@@ -18,6 +19,7 @@ public class MinioService
             .WithSSL(false)
             .Build();
     }
+    #endregion
 
     public async Task<bool> UploadFileAsync(string objectName, Stream data, string contentType)
     {
@@ -30,7 +32,7 @@ public class MinioService
                 .WithObjectSize(data.Length)
                 .WithContentType(contentType);
 
-            await _minioClient.PutObjectAsync(putObjectArgs);
+            var res = await _minioClient.PutObjectAsync(putObjectArgs);
             return true;
         }
         catch (Exception e)
@@ -76,7 +78,6 @@ public class MinioService
             .WithBucket(_bucketName)
             .WithObject(objectName);
 
-        await _minioClient.RemoveObjectAsync(removeObjectArgs);
         await _minioClient.RemoveObjectAsync(removeObjectArgs);
         return true;
     }

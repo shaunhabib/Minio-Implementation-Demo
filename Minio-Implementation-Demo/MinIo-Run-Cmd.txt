@@ -1,1 +1,3 @@
-﻿minio.exe server "C:\Minio\data" --console-address ":9001"
+﻿Go to C:\Minio location and run bellow command in cmd
+
+minio.exe server "C:\Minio\data" --console-address ":9001"
